@@ -10,23 +10,23 @@ services:
       - POSTGRES_PASSWORD=password
 
   django:
-    container_name: api
+    container_name: backend
     build:
-      context: ./api
+      context: ./backend
     env_file:
-      - ./api/.env
+      - ./backend/.env
     ports:
       - 8000:8000
     volumes:
-      - ./api:/api
+      - ./backend:/backend
     depends_on:
       - psql
 
   react:
-    container_name: app
+    container_name: frontend
     build:
-      context: ./app
+      context: ./frontend
     ports:
       - 3000:3000
     volumes:
-      - ./app/src:/app/src
+      - ./frontend/src:/frontend/src
